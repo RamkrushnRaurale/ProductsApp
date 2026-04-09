@@ -1,0 +1,5 @@
+.carousel-dark .carousel-control-next-icon,
+.carousel-dark .carousel-control-prev-icon {
+    filter: invert(0) grayscale(100);
+    font-size: 15px;
+}
