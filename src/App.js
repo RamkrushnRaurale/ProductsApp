@@ -15,7 +15,7 @@ import Home from './components/Dashboard/sidebarComp/Home';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/FoodApp">
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route exact path='/SignUP' element={<SignUp />} />
