@@ -22,7 +22,7 @@ function App() {
     <>
 
       <AuthProvider>
-        <BrowserRouter basename="/FoodApp">
+        <BrowserRouter basename="/ProductsApp">
           <Routes>
             <Route path="/SignIn" element={<SignIn />} />
 
