@@ -1,70 +1,232 @@
-import React, { useState } from "react";
-import '../SignUp/SignUp.css'
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "./AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 
-function SignIn() {
-  const [loginName, setLoginName] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
-  const [loginNameErr, setLoginNameErr] = useState(false)
-  const [loginPasswordErr, setPasswordErr] = useState(false)
-  const [incorrectErr, setincorrectErr] = useState(false)
-  //  function showpassword(e){
-  //    if(e.type === "password"){
-  //       e.type='text'
-  //    }
-  //    else{
-  //       e.type ="password"
-  //    }
-  //  }
-  const Navigate = useNavigate()
-  function Loginvalidation() {
+import eyeImg from "../Assets/Images/eye.png";
+import eyeOff from "../Assets/Images/eye-off.png";
+import MailIcon from "../Assets/Images/MailIcon.png";
 
-    if (loginName.trim().length !== 0) {
-      setLoginNameErr(false)
-    }
-    else {
-      setLoginNameErr(true)
-    }
-    if (loginPassword.trim().length !== 0) {
-      setPasswordErr(false)
-    }
-    else {
-      setPasswordErr(true)
-    }
-    let register = JSON.parse(sessionStorage.getItem('user'))
-    if ((register.name !== loginName) || (register.password !== loginPassword)) {
-      setincorrectErr(true)
-    }
-    else {
-      setincorrectErr(false)
-      Navigate('/Dashboard')
-    }
+import api from "./Api";
 
-  }
+export default function Login() {
+  const [username, setUsername] = useState("jamesd");
+  const [password, setPassword] = useState("jamesdpass");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await api.post("/auth/login", {
+        username,
+        password,
+      });
+
+      const token = response.data.accessToken;
+
+      console.log("🚀 FULL JWT RECEIVED:", token);
+
+      login(token);
+
+      navigate("/Dashboard");
+    } catch (err) {
+      console.error("Login Failed", err);
+      alert("Invalid Username or Password");
+    }
+  };
+
   return (
-    <div className="login-body">
-      <div className="login-main">
-        <h1>Sign In </h1>
-        {incorrectErr && <small style={{ color: 'red', textAlign: 'center' }}> Enter the correct username and password</small>}
-        <br />
-        <p>Name</p>
-        <input type='text' value={loginName} onChange={(e) => { setLoginName(e.target.value) }}></input>
-        {loginNameErr && <small style={{ color: '#d3521d' }}>Please enter the Username</small>}
-        <br />
-        <p>Password</p>
-        <input type='password' value={loginPassword} onChange={(e) => { setLoginPassword(e.target.value) }}></input>
-        {loginPasswordErr && <small style={{ color: '#d3521d' }}>Please enter the password </small>}
-        {/* <div>
-            <input type="checkbox" onclick={()=>showpassword(loginPassword)} />Show Password
-            </div> */}
-        <br />
+    <div style={styles.container}>
+      <div style={styles.card}>
+        {/* Heading */}
+        <h1 style={styles.hello}>Hello there,</h1>
+        <h2 style={styles.welcome}>Welcome!</h2>
 
-        <button style={{ marginBottom: "10px" }} onClick={Loginvalidation}>Sign In</button><br />
-        <p style={{ fontSize: '15px'}}>Doesn't have an account yet? <Link to={'/SignUp'}><b>Sign Up</b></Link></p>
+        <form onSubmit={handleLogin}>
+          {/* Username */}
+          <div style={styles.inputBox}>
+            <span style={styles.icon}>
+              <img src={MailIcon} alt="mail" style={styles.inputIcon} />
+            </span>
+
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Email or Username"
+              style={styles.input}
+            />
+          </div>
+
+          {/* Password */}
+          <div style={styles.inputBox}>
+            <span style={styles.icon}>🔒</span>
+
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              style={styles.input}
+            />
+
+            <span
+              style={styles.eye}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? eyeImg : eyeOff}
+                alt="toggle password"
+                style={styles.eyeIcon}
+              />
+            </span>
+          </div>
+
+          {/* Remember + Forgot */}
+          <div style={styles.options}>
+            <label style={styles.remember}>
+              <input type="checkbox" />
+              Remember
+            </label>
+
+            <Link to="/ForgotPassword" style={styles.forgot}>
+              Forgot Password?
+            </Link>
+          </div>
+
+          {/* Login Button */}
+          <button type="submit" style={styles.button}>
+            Login
+          </button>
+
+          {/* Signup */}
+          <p style={styles.signupText}>
+            Don't have an account?{" "}
+            <Link to="/SignUp" style={styles.signupLink}>
+              Sign Up
+            </Link>
+          </p>
+        </form>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default SignIn
+const styles = {
+  container: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#f4f4f4",
+    fontFamily: "Arial",
+  },
+
+  card: {
+    width: "340px",
+    background: "#fff",
+    padding: "30px",
+    borderRadius: "12px",
+    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+  },
+  inputIcon: {
+    width: "20px",
+    height: "20px",
+  },
+
+  hello: {
+    margin: 0,
+    color: "#5a54ff",
+    fontSize: "32px",
+    fontWeight: "700",
+  },
+
+  welcome: {
+    marginTop: "5px",
+    color: "#ff9800",
+    fontSize: "28px",
+    fontWeight: "700",
+  },
+
+  inputBox: {
+    display: "flex",
+    alignItems: "center",
+    background: "#eef0ff",
+    borderRadius: "8px",
+    marginTop: "20px",
+    padding: "12px",
+  },
+
+  icon: {
+    marginRight: "10px",
+    fontSize: "18px",
+    color: "#1a005d",
+  },
+
+  input: {
+    border: "none",
+    outline: "none",
+    background: "transparent",
+    flex: 1,
+    fontSize: "15px",
+  },
+
+  eye: {
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+  },
+
+  eyeIcon: {
+    width: "22px",
+    height: "22px",
+  },
+
+  options: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "18px",
+    fontSize: "14px",
+  },
+
+  remember: {
+    display: "flex",
+    alignItems: "center",
+    gap: "5px",
+  },
+
+  forgot: {
+    color: "#1a005d",
+    textDecoration: "none",
+    fontWeight: "500",
+  },
+
+  button: {
+    width: "100%",
+    marginTop: "22px",
+    padding: "12px",
+    border: "none",
+    borderRadius: "6px",
+    background: "#14004d",
+    color: "#fff",
+    fontSize: "18px",
+    fontWeight: "bold",
+    cursor: "pointer",
+  },
+
+  signupText: {
+    marginTop: "20px",
+    textAlign: "center",
+    fontSize: "14px",
+  },
+
+  signupLink: {
+    color: "#5a54ff",
+    textDecoration: "none",
+    fontWeight: "bold",
+  },
+};

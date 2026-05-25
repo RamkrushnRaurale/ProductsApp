@@ -78,9 +78,9 @@ function SideBar() {
 
                     <li className="sidebar-item">
 
-                        <a
+                        <Link
                             className="sidebar-link"
-                            href="//"
+                            to="//"
                         >
 
                             <img
@@ -92,15 +92,15 @@ function SideBar() {
                                 CodeRama
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 
                     <li className="sidebar-item">
 
-                        <a
+                        <Link
                             className="sidebar-link"
-                            href="//"
+                            to={"/Home"}
                         >
 
                             <img
@@ -109,21 +109,18 @@ function SideBar() {
                             />
 
                             <span className="sidebar-text">
-                                <Link to={"/home"}>
-                                    Home
-                                </Link>
+
+                                Home
+
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 
                     <li className="sidebar-item">
 
-                        <a
-                            className="sidebar-link"
-                            href="//"
-                        >
+                        <Link className="sidebar-link" to="//">
 
                             <img
                                 src={circleAboutUs}
@@ -134,15 +131,15 @@ function SideBar() {
                                 About Us
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 
                     <li className="sidebar-item">
 
-                        <a
+                        <Link
                             className="sidebar-link"
-                            href="//"
+                            to="//"
                         >
 
                             <img
@@ -154,15 +151,15 @@ function SideBar() {
                                 Contact
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 
                     <li className="sidebar-item">
 
-                        <a
+                        <Link
                             className="sidebar-link"
-                            href="//"
+                            to="//"
                         >
 
                             <img
@@ -174,15 +171,15 @@ function SideBar() {
                                 Services
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 
                     <li className="sidebar-item">
 
-                        <a
+                        <Link
                             className="sidebar-link"
-                            href="//"
+                            to="//"
                         >
 
                             <img
@@ -194,7 +191,7 @@ function SideBar() {
                                 FAQs
                             </span>
 
-                        </a>
+                        </Link>
 
                     </li>
 

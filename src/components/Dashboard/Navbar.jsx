@@ -15,10 +15,10 @@ export default function Navbar(props) {
         <>
             <nav style={{ boxShadow: "10px 0 5px grey",width:"83%", background:"white",right:"0",position:"fixed",top:"0",zIndex:"9"}} className="navbar navbar-expand-lg navbar-dark ">
                 <div className="container-fluid">
-                    <a className="navbar-brand mx-2" href="/"><img style={{
+                    <Link className="navbar-brand mx-2" to="/"><img style={{
                         width: "100px",
                         borderRadius: "5px", boxShadow: "0px 0 5px black"
-                    }} src={images} alt="" /></a>
+                    }} src={images} alt="" /></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
