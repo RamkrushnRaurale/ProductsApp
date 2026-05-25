@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/FoodApp/static/css/main.32fc545e.css",
-    "main.js": "/FoodApp/static/js/main.6f1b5fe7.js",
-    "static/js/453.96453769.chunk.js": "/FoodApp/static/js/453.96453769.chunk.js",
-    "static/media/bootstrap-icons.woff?": "/FoodApp/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
-    "static/media/bootstrap-icons.woff2?": "/FoodApp/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
-    "static/media/instagram.png": "/FoodApp/static/media/instagram.2d5cedd576ca1a740d7c.png",
-    "static/media/whatsapp.png": "/FoodApp/static/media/whatsapp.02736a253111ffdfca0c.png",
-    "static/media/ShppingCart.png": "/FoodApp/static/media/ShppingCart.70a79d1c5ca8a1c2a08e.png",
-    "static/media/circleHome.png": "/FoodApp/static/media/circleHome.a80ad4658b98cece0f27.png",
-    "static/media/twitter.png": "/FoodApp/static/media/twitter.894988327f8d68209e91.png",
-    "static/media/circleContact.jpg": "/FoodApp/static/media/circleContact.e375b4d8bd564373443b.jpg",
-    "index.html": "/FoodApp/index.html",
-    "main.32fc545e.css.map": "/FoodApp/static/css/main.32fc545e.css.map",
-    "main.6f1b5fe7.js.map": "/FoodApp/static/js/main.6f1b5fe7.js.map",
-    "453.96453769.chunk.js.map": "/FoodApp/static/js/453.96453769.chunk.js.map"
+    "main.css": "/ProductsApp/static/css/main.4a60e0d3.css",
+    "main.js": "/ProductsApp/static/js/main.9d9cd4ee.js",
+    "static/js/453.96453769.chunk.js": "/ProductsApp/static/js/453.96453769.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/ProductsApp/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
+    "static/media/bootstrap-icons.woff2?": "/ProductsApp/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
+    "static/media/eye.png": "/ProductsApp/static/media/eye.42499a65aae2cc1f6875.png",
+    "static/media/instagram.png": "/ProductsApp/static/media/instagram.2d5cedd576ca1a740d7c.png",
+    "static/media/whatsapp.png": "/ProductsApp/static/media/whatsapp.02736a253111ffdfca0c.png",
+    "static/media/ShppingCart.png": "/ProductsApp/static/media/ShppingCart.70a79d1c5ca8a1c2a08e.png",
+    "static/media/circleHome.png": "/ProductsApp/static/media/circleHome.a80ad4658b98cece0f27.png",
+    "static/media/eye-off.png": "/ProductsApp/static/media/eye-off.389646d09b66b5d28159.png",
+    "static/media/MailIcon.png": "/ProductsApp/static/media/MailIcon.e8779962fbb49839e811.png",
+    "static/media/twitter.png": "/ProductsApp/static/media/twitter.894988327f8d68209e91.png",
+    "static/media/circleContact.jpg": "/ProductsApp/static/media/circleContact.e375b4d8bd564373443b.jpg",
+    "index.html": "/ProductsApp/index.html",
+    "main.4a60e0d3.css.map": "/ProductsApp/static/css/main.4a60e0d3.css.map",
+    "main.9d9cd4ee.js.map": "/ProductsApp/static/js/main.9d9cd4ee.js.map",
+    "453.96453769.chunk.js.map": "/ProductsApp/static/js/453.96453769.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.32fc545e.css",
-    "static/js/main.6f1b5fe7.js"
+    "static/css/main.4a60e0d3.css",
+    "static/js/main.9d9cd4ee.js"
   ]
 }
