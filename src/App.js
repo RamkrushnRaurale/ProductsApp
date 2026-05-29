@@ -22,7 +22,7 @@ function App() {
     <>
 
       <AuthProvider>
-        <BrowserRouter basename="/ProductsApp">
+        <BrowserRouter basename="/Authentication">
           <Routes>
             <Route path="/SignIn" element={<SignIn />} />
 

@@ -39,7 +39,7 @@ function Slider() {
                 <div className="carousel-inner" style={{ height: "500px" }}>
                     <div className="carousel-item active" data-bs-interval="3000">
                         <img
-                            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+                            src="https://images-static.nykaa.com/uploads/b59d2ab5-9aee-4f26-8a12-9d0fa30e7395.gif"
                             className="d-block w-100"
                             alt="Nature"
                             style={{ height: "500px", objectFit: "cover", borderRadius: "20px" }}
@@ -52,7 +52,7 @@ function Slider() {
 
                     <div className="carousel-item" data-bs-interval="3000">
                         <img
-                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                            src="https://cdn.shopify.com/app-store/listing_images/c7e3fe2671ce33603dd888b35526ef57/promotional_image/CL7Ru8PBypQDEAE=.jpeg?height=720&quality=90&width=1280"
                             className="d-block w-100"
                             alt="Beach"
                             style={{ height: "500px", objectFit: "cover", borderRadius: "20px" }}
@@ -65,7 +65,7 @@ function Slider() {
 
                     <div className="carousel-item" data-bs-interval="3000">
                         <img
-                            src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
+                            src="https://www.dsers.com/blog/content/images/2025/01/Product-Offering.png"
                             className="d-block w-100"
                             alt="City"
                             style={{ height: "500px", objectFit: "cover", borderRadius: "20px" }}

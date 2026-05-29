@@ -1,64 +1,113 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import MailIcon from "../Assets/Images/MailIcon.png";
 
 export default function ForgotPassword() {
+
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        // Fake reset logic
-        if (email) {
-            setMessage("✅ Password reset link sent to your email.");
-        } else {
-            setMessage("❌ Please enter your email.");
+        try {
+
+            const response = await axios.post(
+                "http://localhost:5000/forgot-password",
+                { email }
+            );
+
+            setMessage(response.data.message);
+
+        } catch (error) {
+
+            console.log(error);
+
+            setMessage(
+                error.response?.data?.message ||
+                "Something went wrong"
+            );
         }
     };
 
     return (
+
         <div style={styles.container}>
+
             <div style={styles.card}>
-                <h1 style={styles.heading}>Forgot Password</h1>
+
+                <h1 style={styles.heading}>
+                    Forgot Password
+                </h1>
 
                 <p style={styles.text}>
-                    Enter your email address to reset your password.
+                    Enter your email address to reset password
                 </p>
 
                 <form onSubmit={handleSubmit}>
+
                     <div style={styles.inputBox}>
+
                         <span style={styles.icon}>
-                            <img src={MailIcon} alt="mail" style={styles.inputIcon} />
+
+                            <img
+                                src={MailIcon}
+                                alt="mail"
+                                style={styles.inputIcon}
+                            />
+
                         </span>
 
                         <input
                             type="email"
                             placeholder="Enter Email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) =>
+                                setEmail(e.target.value)
+                            }
                             style={styles.input}
                         />
+
                     </div>
 
-                    <button type="submit" style={styles.button}>
+                    <button
+                        type="submit"
+                        style={styles.button}
+                    >
                         Send Reset Link
                     </button>
+
                 </form>
 
-                {message && <p style={styles.message}>{message}</p>}
+                {
+                    message &&
+                    <p style={styles.message}>
+                        {message}
+                    </p>
+                }
 
                 <div style={{ marginTop: "20px" }}>
-                    <Link to="/SignIn" style={styles.back}>
-                        ← Back to Login
+
+                    <Link
+                        to="/SignIn"
+                        style={styles.back}
+                    >
+                        ← Back To Login
                     </Link>
+
                 </div>
+
             </div>
+
         </div>
     );
 }
 
 const styles = {
+
     container: {
         height: "100vh",
         display: "flex",
@@ -98,8 +147,8 @@ const styles = {
 
     icon: {
         marginRight: "10px",
-        marginBottom: "1px",
     },
+
     inputIcon: {
         width: "20px",
         height: "20px",
@@ -129,7 +178,6 @@ const styles = {
     message: {
         marginTop: "15px",
         fontSize: "14px",
-        color: "#333",
     },
 
     back: {

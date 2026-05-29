@@ -100,7 +100,7 @@ function SideBar() {
 
                         <Link
                             className="sidebar-link"
-                            to={"/Home"}
+                            to={"/Dashboard"}
                         >
 
                             <img

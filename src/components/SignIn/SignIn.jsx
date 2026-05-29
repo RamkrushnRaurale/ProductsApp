@@ -9,113 +9,183 @@ import MailIcon from "../Assets/Images/MailIcon.png";
 import api from "./Api";
 
 export default function Login() {
-  const [username, setUsername] = useState("jamesd");
-  const [password, setPassword] = useState("jamesdpass");
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const { login } = useAuth();
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
 
     try {
-      const response = await api.post("/auth/login", {
-        username,
+
+      // Backend Login API
+      const response = await api.post("/login", {
+        email: username,
         password,
       });
 
-      const token = response.data.accessToken;
+      // JWT Token
+      const token = response.data.token;
 
-      console.log("🚀 FULL JWT RECEIVED:", token);
+      console.log("✅ JWT TOKEN:", token);
 
+      // Save Token
+      localStorage.setItem("token", token);
+
+      // Save User Data
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      // Auth Context Login
       login(token);
 
+      alert("Login Successful");
+
+      // Navigate Dashboard
       navigate("/Dashboard");
+
     } catch (err) {
-      console.error("Login Failed", err);
-      alert("Invalid Username or Password");
+
+      console.log(err);
+
+      if (err.response?.data?.message) {
+        alert(err.response.data.message);
+      } else {
+        alert("Invalid Email or Password");
+      }
     }
   };
 
   return (
     <div style={styles.container}>
+
       <div style={styles.card}>
+
         {/* Heading */}
         <h1 style={styles.hello}>Hello there,</h1>
+
         <h2 style={styles.welcome}>Welcome!</h2>
 
         <form onSubmit={handleLogin}>
-          {/* Username */}
+
+          {/* Email */}
           <div style={styles.inputBox}>
+
             <span style={styles.icon}>
-              <img src={MailIcon} alt="mail" style={styles.inputIcon} />
+              <img
+                src={MailIcon}
+                alt="mail"
+                style={styles.inputIcon}
+              />
             </span>
 
             <input
-              type="text"
+              type="email"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Email or Username"
+              onChange={(e) =>
+                setUsername(e.target.value)
+              }
+              placeholder="Email"
               style={styles.input}
             />
+
           </div>
 
           {/* Password */}
           <div style={styles.inputBox}>
+
             <span style={styles.icon}>🔒</span>
 
             <input
-              type={showPassword ? "text" : "password"}
+              type={
+                showPassword
+                  ? "text"
+                  : "password"
+              }
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
               placeholder="Password"
               style={styles.input}
             />
 
             <span
               style={styles.eye}
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() =>
+                setShowPassword(!showPassword)
+              }
             >
               <img
-                src={showPassword ? eyeImg : eyeOff}
+                src={
+                  showPassword
+                    ? eyeImg
+                    : eyeOff
+                }
                 alt="toggle password"
                 style={styles.eyeIcon}
               />
             </span>
+
           </div>
 
           {/* Remember + Forgot */}
           <div style={styles.options}>
+
             <label style={styles.remember}>
               <input type="checkbox" />
               Remember
             </label>
 
-            <Link to="/ForgotPassword" style={styles.forgot}>
+            <Link
+              to="/ForgotPassword"
+              style={styles.forgot}
+            >
               Forgot Password?
             </Link>
+
           </div>
 
           {/* Login Button */}
-          <button type="submit" style={styles.button}>
+          <button
+            type="submit"
+            style={styles.button}
+          >
             Login
           </button>
 
           {/* Signup */}
           <p style={styles.signupText}>
+
             Don't have an account?{" "}
-            <Link to="/SignUp" style={styles.signupLink}>
+
+            <Link
+              to="/SignUp"
+              style={styles.signupLink}
+            >
               Sign Up
             </Link>
+
           </p>
+
         </form>
+
       </div>
+
     </div>
   );
 }
 
 const styles = {
+
   container: {
     height: "100vh",
     display: "flex",
@@ -130,11 +200,8 @@ const styles = {
     background: "#fff",
     padding: "30px",
     borderRadius: "12px",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-  },
-  inputIcon: {
-    width: "20px",
-    height: "20px",
+    boxShadow:
+      "0 5px 15px rgba(0,0,0,0.1)",
   },
 
   hello: {
@@ -164,6 +231,11 @@ const styles = {
     marginRight: "10px",
     fontSize: "18px",
     color: "#1a005d",
+  },
+
+  inputIcon: {
+    width: "20px",
+    height: "20px",
   },
 
   input: {
@@ -229,4 +301,5 @@ const styles = {
     textDecoration: "none",
     fontWeight: "bold",
   },
+
 };
